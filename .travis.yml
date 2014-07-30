@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+- '0.8'
+- '0.6'
+deploy:
+  provider: heroku
+  app: assemblycoins-assembled
+  api_key:
+    secure: "CsmXBM1mTjxRNRLeFEQCSjOn+SysFe5Ay9e0ae1jc4e2pattpYoKnWV/x8VObcV8aQxtsOauspk+C7WwpzGgtc99uxYxU5WPYRxSwXL9biDpySFCKVtlh10woCs9JIZ08t9OlNhcsFOYmW3dv1He8HQ0uf5icqp7k//dpzrUqLk="
+  strategy: git
+before_deploy:
+- git fetch --unshallow
