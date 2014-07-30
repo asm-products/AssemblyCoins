@@ -1,0 +1,27 @@
+{
+"name":  "assemblycoins-assembled",
+  "version": "0.0.0",
+  "description": "Starter Page",
+  "main": "hello.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+   "url": "https://github.com/org-name/assemblycoins.git"
+  },
+  "author": "Assembly",
+  "license": "MIT",
+  "bugs": {
+   "url": "https://github.com/org-name/assemblycoins/issues" 
+  },
+  "homepage": "https://github.com/assemblymade/",
+  "dependencies": {
+    "express": "^4.6.1",
+    "logfmt": "^1.1.2"
+  },
+  "devDependencies":{
+    "mocha":"*"
+  }
+
+}
