@@ -13,12 +13,13 @@
   "author": "Assembly",
   "license": "MIT",
   "bugs": {
-   "url": "https://github.com/org-name/assemblycoins/issues" 
+   "url": "https://github.com/org-name/assemblycoins/issues"
   },
   "homepage": "https://github.com/assemblymade/",
   "dependencies": {
     "express": "^4.6.1",
-    "logfmt": "^1.1.2"
+    "logfmt": "^1.1.2",
+    "pagedown": "*"
   },
   "devDependencies":{
     "mocha":"*"
