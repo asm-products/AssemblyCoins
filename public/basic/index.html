@@ -38,18 +38,17 @@
 
 
       </div>
-    </div>
 
 <br><br><br>
-
     <!-- Title Area -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="jumbotron">
           <div class="row">
 
-            <div class="col-md-2 col-md-push-9">
-              <img src="soyuz_launch.jpg" class="img-rounded img-responsive">
+            <div class="col-md-8 col-md-push-2">
+
+              <img style="opacity: .5;" src="bitcoinnodes.jpg" class="img-rounded img-responsive">
             </div>
 
             <div class="col-md-10">
@@ -61,8 +60,6 @@
         </div>
       </div>
     </div>
-
-
 
     <!-- Blurb About AssemblyCoins Area -->
     <div class="row">
@@ -95,9 +92,6 @@
         </div>
       </div>
     </div>
-<br><br>
-
-
 
       <!-- Sign Up Area -->
     <div class="row">
@@ -156,19 +150,22 @@
       </div>
     </div>
 
-      <!-- Begin MailChimp Signup Form -->
-
+<!-- Begin MailChimp Signup Form -->
 
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script>
-$(function(){
-  $("#includedContent").load("whitepaper.html");
-});
-</script>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="well">
+          <h1><a href="/issue.html">Issue Coins Now</a></h1>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
-<br><br>
+
       <!-- About Assembly in general -->
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -176,6 +173,11 @@ $(function(){
           <div class="panel-body">
             <div id="includedContent"></div>
 
+<script>
+$(function(){
+$("#includedContent").load("whitepaper.html");
+});
+</script>
 
 
 
@@ -190,5 +192,44 @@ $(function(){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script>
+    function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+function addform(){
+  var newform=document.createElement('FORM');
+  newform.innerhtml="Make an Address";
+  document.getElementById('makeaddress')=appendchild(newform);
+
+
+}
+
+</script>
+
+
+
+
   </body>
 </html>

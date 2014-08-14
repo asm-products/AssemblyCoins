@@ -22,7 +22,7 @@ app.use('/', express.static(__dirname + '/public/basic/'));
 app.use('/contact', express.static(__dirname + '/public/basic/'));
 app.use('/faq', express.static(__dirname + '/public/basic/'));
 
-var port = Number(process.env.PORT || 5000);
+var port = Number(process.env.PORT || 5001);
 
 app.listen(port,function() {
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+
+  <form name="input" action="" onsubmit="return makeaddress(this); " method="get">
+Username: <input type="text" name="user">
+<input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+
+<script src="bitcoinjs.min.js">
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+
+<script>
+
+function makeaddress(theForm){
+
+  var key = Bitcoin.ECKey.makeRandom()
+
+  var public_address=key.pub.getAddress().toString();
+  var private_key=key.toWIF();
+
+
+$(document).ready(function(){
+    $.get("http://6a2dfc33.ngrok.com",function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+
+
+
+  //alert(public_address);
+
+  return false;
+};
+
+
+</script>
+
+
+
+</html>
