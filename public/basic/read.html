@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+<br><br><br>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2>Read Address Statements</h2>
+  <div class="well">
+    <form name="input" action="" onsubmit="return addressstatements(this); " method="get">
+  Public Address: <input type="text" name="publicaddress"><br><br>
+  <input type="submit" value="Submit">
+  </form>
+</div>
+</div>
+</div>
+<br><br><br>
+
+<div id="addressplace">
+</div>
+
+</body>
+
+<script src="bitcoinjs.min.js">
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+
+<script>
+
+
+function showstatements(statements){
+
+var addresscontainer=document.createElement('div');
+var addresscolumn=document.createElement('div');
+addresscolumn.className="col-md-4 col-md-offset-4";
+
+var addresswell=document.createElement('div');
+addresswell.className="well";
+var header=document.createElement('h4');
+header.innerHTML=statements;
+
+addresswell.appendChild(header);
+
+addresscolumn.appendChild(addresswell);
+addresscontainer.appendChild(addresscolumn);
+
+var addressplace=document.getElementById("addressplace");
+addressplace.innerHTML = "";
+addressplace.appendChild(addresscontainer);
+
+}
+
+
+function addressstatements(theForm){
+
+  var publicaddress=theForm.publicaddress.value;
+
+
+url="http://6a2dfc33.ngrok.com/colors/statements/"+publicaddress
+console.log(url);
+var response;
+
+$.get(url,
+  function(data,status){
+      //alert("Data: " + data + "\nStatus: " + status);
+      console.log(data);
+      response=data;
+      showstatements(response);
+    });
+//alert(response);
+
+
+  //alert(public_address);
+
+  return false;
+};
+
+
+</script>
+
+
+
+</html>
