@@ -1,6 +1,6 @@
 
 function getoatxs(blockn){
-  var url= 'http://10304d82.ngrok.com';
+  var url= 'bitwrangle.herokuapp.com';
   url=url+'/oa/blocks/'+blockn;
   var newtxs;
 
