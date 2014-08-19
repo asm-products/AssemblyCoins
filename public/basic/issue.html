@@ -89,13 +89,13 @@ outgoing_data={
   description: message
 }
 
-var amount_to_send=0;
+var amount_to_send=0.0000;
 
 $.post(url,
   outgoing_data,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
-      amount_to_send=parseFloat(data.toString());
+      amount_to_send=parseFloat(data.toString()).toFixed(8);
       console.log(typeof data);
     });
 
