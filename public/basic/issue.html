@@ -51,12 +51,16 @@ addresscolumn.className="col-md-4 col-md-offset-4";
 
 var addresswell=document.createElement('div');
 addresswell.className="well";
+var privatewell=document.createElement('div');
+privatewell.className="well";
+
 var header=document.createElement('h4');
 header.innerHTML="Send "+amounttosend+" bitcoins to: <br><br>"+publicaddress+"<br><small> to send "+coloramount+" "+colorname+" coins to "+destination+"</small><br><br>";
-var header2=document.createElement('h2');
+var header2=document.createElement('h4');
 header2.innerHTML="The Private Key for this address is <br>"+privatekey;
 addresswell.appendChild(header);
-addresswell.appendChild(header2);
+
+privatewell.appendChild(header2);
 
 addresscolumn.appendChild(addresswell);
 addresscontainer.appendChild(addresscolumn);
