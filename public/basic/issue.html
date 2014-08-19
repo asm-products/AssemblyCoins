@@ -63,13 +63,13 @@ addresswell.appendChild(header);
 privatewell.appendChild(header2);
 
 addresscolumn.appendChild(addresswell);
-addresscolumn.appendChild(privatewell);
+
 addresscontainer.appendChild(addresscolumn);
 
 var addressplace=document.getElementById("addressplace");
 addressplace.innerHTML = "";
 addressplace.appendChild(addresscontainer);
-
+addressplace.appendChild(privatewell);
 }
 
 
