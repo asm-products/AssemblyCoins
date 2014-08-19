@@ -17,7 +17,7 @@
     <form name="input" action="" onsubmit="return makeaddress(this); " method="get">
   Coin Name: <input type="text" name="coinname"><br><br>
   Amount to be Issued: <input type="text" name="issuedamount"><br><br>
-  Coin Destination: <input type="text" name="destination"><br><br>
+  <!-- Coin Destination: <input type="text" name="destination"><br><br> -->
   Additional Message: <input type="text" name="message"><br><br>
   <input type="submit" value="Submit">
   </form>
@@ -92,7 +92,8 @@ function makeaddress(theForm){
 
   var coinname=theForm.coinname.value;
   var issuedamount=theForm.issuedamount.value;
-  var destination=theForm.destination.value;
+  var destination=public_address;  //SEND TO SELF
+  // var destination=theForm.destination.value;
   var message=theForm.message.value;
 
 url='http://bitwrangle.herokuapp.com'+'/addresses/givenew'

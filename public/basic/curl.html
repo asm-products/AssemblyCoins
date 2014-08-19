@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+<br><br><br>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2>Available API Calls<br><small>With CURL examples</small></h2>
+    <div class="well">
+      <h5>API ADDRESS: http://bitwrangle.herokuapp.com/</h5><br>
+      <h5>Create New Coin</h5><br>
+      <h5>Issue Coins</h5><br>
+      <h5>Transfer Colored Coins -  Database Free, Manually Selected Inputs</h5><br>
+      POST '/transactions/colored'
+      curl --data "public_address=1Ee8gNxqfDsWdQCSskfYVqX4BrYJN3k2SC&recipient=1GgwA7c2ovgWDBoVYsHT5VYXw2QBey1EdF&fee=0.00005&private_key=&coloramt=733&inputs=[{'output': '207726f41d1ddc38bd1cf53cc54114bca7aa03852a08f554d17c90251867c1b4:0', 'value': 5461}, {'output': '467f13f73aeb78cd78359e23f3e9c0dbdd46de162ff7dd0f8f629a34705fa751:0', 'value': 5461}, {'output': '4c88e1f38d01828404742e3a725575f1426f3a4411a9c81abd720c4ae533ea75:0', 'value': 5461}, {'output': '0d5efe32d57db5b4a2f1593a005a8c77be6f2002f0853b727cb73fe3d0458d43:3', 'value': 13500}]&inputcoloramt=1000" http://bitwrangle.herokuapp.com/transactions/colored
+
+      <br><br>Response<br>1aa3c755fb0fc34e24c6e1595eacedb983112ef383220cefae625fc74ac6158f
+
+      <h5>Write OP RETURN transaction</h5><br>
+      <h5>Push Raw Hex Transaction</h5><br>
+      <h5>Get Block Count</h5>curl http://bitwrangle.herokuapp.com/blocks/count<br>
+
+
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+<div id="addressplace">
+</div>
+
+</body>
+
+<script src="bitcoinjs.min.js">
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+
+<script>
+
+</script>
+
+
+
+</html>
