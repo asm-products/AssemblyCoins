@@ -95,7 +95,8 @@ $.post(url,
   outgoing_data,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
-      amount_to_send=parseFloat(data.toString()).toFixed(8);
+      var amount_to_send=parseFloat(data).toFixed(8).toString();
+      console.log(data);
       console.log(typeof data);
     });
 
