@@ -1,7 +1,7 @@
 
 function getoatxs(blockn){
   var url= 'bitwrangle.herokuapp.com';
-  url=url+'/oa/blocks/'+blockn;
+  url=url+'/color/transactions/'+blockn;
   var newtxs;
 
   $.get(url,
@@ -9,8 +9,8 @@ function getoatxs(blockn){
         //alert("Data: " + data + "\nStatus: " + status);
         console.log(data);
         newtxs=data;
+        alert(newtxs);
+        return newtxs;
       });
-    alert(newtxs);
-    return newtxs;
 
 }

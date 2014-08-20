@@ -40,15 +40,26 @@
 
 <script>
 
-getoatxs(301271);
+getoatxs(316662);
 
-function add_tx(block, txhash, n){
+function add_tx(block, txhash, sourceaddress, destination, colornam, coloramt, spent, row_n){
   var txtable= document.getElementById('txstable');
-  var row=txtable.insertRow(n);
+  var row=txtable.insertRow(row_n);
   var blockdata=row.insertCell(0);
   var txhashdata=row.insertCell(1);
+  var source_address=row.insertCell(2);
+  var destination_address=row.insertCell(3);
+  var colorname=row.insertCell(4);
+  var coloramount=row.insertCell(5);
+  var spentstatus=row.insertCell(6);
+
   blockdata.innerHTML=block;
   txhashdata.innerHTML=txhash;
+  source_address.innerHTML=sourceaddress;
+  destination_address.innerHTML=destination;
+  colorname.innerHTML=colornam;
+  coloramount.innerHTML=coloramt;
+  spentstatus.innerHTML=spent;
 
   }
 
@@ -63,7 +74,7 @@ function make_table(blockrange){
 }
 
 
-//make_table(100);
+make_table(100);
 
 
 
