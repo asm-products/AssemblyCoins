@@ -18,7 +18,7 @@
 <br><br><br>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-10 col-md-offset-1">
     <div class="well">
       <table class="table" id="txstable">
 
@@ -40,9 +40,9 @@
 
 <script>
 
-getoatxs(316662);
 
-function add_tx(block, txhash, sourceaddress, destination, colornam, coloramt, spent, row_n){
+
+function add_tx(block, txhash, sourceaddress, destination, colornam, coloramt, spent, row_n, showlink){
   var txtable= document.getElementById('txstable');
   var row=txtable.insertRow(row_n);
   var blockdata=row.insertCell(0);
@@ -51,25 +51,68 @@ function add_tx(block, txhash, sourceaddress, destination, colornam, coloramt, s
   var destination_address=row.insertCell(3);
   var colorname=row.insertCell(4);
   var coloramount=row.insertCell(5);
-  var spentstatus=row.insertCell(6);
 
-  blockdata.innerHTML=block;
-  txhashdata.innerHTML=txhash;
-  source_address.innerHTML=sourceaddress;
-  destination_address.innerHTML=destination;
+  if(showlink){
+  blockdata.innerHTML="<a href=http://blockchain.info/block-index/"+block+"?format=json>"+block+"</a>";
+  txhashdata.innerHTML="<a href=https://blockchain.info/tx/"+txhash+">"+txhash+"</a>";
+  source_address.innerHTML="<a href=https://blockchain.info/address/"+sourceaddress+">"+sourceaddress+"</a>";
+  destination_address.innerHTML="<a href=https://blockchain.info/address/"+destination+">"+destination+"</a>";
   colorname.innerHTML=colornam;
   coloramount.innerHTML=coloramt;
-  spentstatus.innerHTML=spent;
+  //spentstatus.innerHTML=spent;
+}
+else{
+
+blockdata.innerHTML=block;
+txhashdata.innerHTML=txhash;
+source_address.innerHTML=sourceaddress;
+destination_address.innerHTML=destination;
+colorname.innerHTML=colornam;
+coloramount.innerHTML=coloramt;
+//spentstatus.innerHTML=spent;
+}
+
 
   }
 
 function make_table(blockrange){
-  add_tx("Block","Transaction Hash",0);
+  add_tx("Block","Transaction Hash", "Sources", "Destination", "Color Address", "Color Amount",  0, false);
 
-  for (i=0; i<blockrange; i++)
-    {
-      add_tx(i,i*i,i+1);
-    }
+  $.get("http://bitwrangle.herokuapp.com/blocks/count",
+
+  function(data,status){
+
+    currentblock=data;
+    document.getElementById('test').innerHTML="Last Block "+currentblock.toString();
+
+    for(i=currentblock;i>currentblock-blockrange;i=i-1)
+      {
+        txs=getoatxs(i,
+        function(txdata){
+
+              txlength=txdata['data'].length;
+
+              for (i=0; i<txlength; i++)
+                {
+                  var block = txdata['data'][i]['block'];
+                  var txhash=txdata['data'][i]['hashid'];
+                  var source_address=txdata['data'][i]['source_address'];
+                  var destination=txdata['data'][i]['destination_address'];
+                  var coloraddress=txdata['data'][i]['color_address'];
+                  var coloramt=txdata['data'][i]['color_amount'];
+                  var spentstatus=txdata['data'][i]['spent'];
+
+                  console.log(block);
+                  add_tx(block, txhash, source_address, destination, coloraddress, coloramt, spentstatus,i+1, true);
+                }
+
+        });
+      }
+
+
+  }
+  );
+
 
 }
 
