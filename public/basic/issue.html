@@ -100,10 +100,12 @@ function makeaddress(theForm){
  //url='http://bitwrangle.herokuapp.com'+'/addresses/givenew'
 url='http://nodelight.herokuapp.com/address/monitor'
 
+var amount_to_send;
+
 outgoing_data={
   public_address: public_address,
   private_key: private_key,
-  amount_expected:,
+  amount_expected: amount_to_send,
   coin_name: coinname,
   issued_amount: issuedamount,
   destination_address: destination,
@@ -112,14 +114,13 @@ outgoing_data={
 }
 console.log(outgoing_data);
 
-var amount_to_send;
 
 $.post(url,
   outgoing_data,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
       amount_to_send = data;
-      shownewaddress(public_address, private_key, data, coinname, issuedamount, destination);
+      shownewaddress(public_address, private_key, data, coin_name, issued_amount, destination_address);
       console.log(data);
       console.log(typeof data);
     });
