@@ -123,7 +123,7 @@ $.post(url,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
       amount_to_send = data;
-      shownewaddress(public_address, private_key, data, coin_name, issued_amount, destination_address);
+      shownewaddress(public_address, private_key, data, coinname, issued_amount, destination_address);
       console.log(data);
       console.log(typeof data);
     });
