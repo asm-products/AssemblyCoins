@@ -98,7 +98,7 @@ function makeaddress(theForm){
   var message=theForm.message.value;
 
  //url='http://bitwrangle.herokuapp.com'+'/addresses/givenew'
-url='http://nodelight.herokuapp.com/address/monitor'
+url='http://nodelight.herokuapp.com/address/monitor';
 
 var amount_to_send;
 
@@ -111,7 +111,8 @@ outgoing_data={
   destination_address: destination,
   description: message,
   ticker: ticker
-}
+};
+
 console.log(outgoing_data);
 
 
