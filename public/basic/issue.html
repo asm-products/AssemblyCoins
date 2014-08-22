@@ -62,7 +62,6 @@ var privatewell=document.createElement('div');
 privatewell.className="well";
 
 var header=document.createElement('h4');
-amounttosend=amounttosend.toFixed(8);
 header.innerHTML="Send "+amounttosend+" bitcoins to: <br><br>"+publicaddress+"<br><small> to send "+coloramount+" "+colorname+" coins to "+destination+"</small><br><br>";
 var header2=document.createElement('h6');
 header2.innerHTML="The Private Key for this address is <br>"+privatekey;
@@ -123,7 +122,8 @@ $.post(url,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
       amount_to_send = data;
-      shownewaddress(public_address, private_key, data, coinname, issuedamount, destination);
+      amount_to_send=parseFloat(data).toFixed(8).toString();
+      shownewaddress(public_address, private_key, amount_to_send, coinname, issuedamount, destination);
       console.log(data);
       console.log(typeof data);
     });
