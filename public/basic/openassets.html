@@ -84,7 +84,7 @@ function make_table(blockrange){
 
     currentblock=data;
     document.getElementById('test').innerHTML="Last Block "+currentblock.toString();
-    var blockrange=1000;
+    var blockrange=5000;
 
         txs=getoatxs(currentblock-blockrange,
           function(txdata){
