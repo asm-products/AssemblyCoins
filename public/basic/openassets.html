@@ -42,7 +42,7 @@
 
 
 
-function add_tx(block, txhash, destination, coloraddress, coloramt, spent, spent_at, btc,row_n, showlink){
+function add_tx(block, txhash, destination, color_address, coloramt, spent_at, btc,row_n, showlink){
 
   var txtable= document.getElementById('txstable');
   var row=txtable.insertRow(row_n);
@@ -68,7 +68,7 @@ else{
 blockdata.innerHTML=block;
 txhashdata.innerHTML=txhash;
 destination_address.innerHTML=destination;
-coloraddress.innerHTML=coloraddress;
+coloraddress.innerHTML=color_address;
 coloramount.innerHTML=coloramt;
 spentstatus.innerHTML=spent_at;
 BTCcontent.innerHTML=btc;
@@ -76,7 +76,7 @@ BTCcontent.innerHTML=btc;
   }
 
 function make_table(blockrange){
-  add_tx("Block","Transaction Hash", Destination", "Color Address", "Color Amount",  "Spent in TX", "Bitcoin Content", 0, false);
+  add_tx("Block","Transaction Hash", "Destination", "Color Address", "Color Amount", "Spent in TX", "Bitcoin Content", 0, false);
 
   $.get("http://bitwrangle.herokuapp.com/blocks/count",
 
@@ -84,13 +84,12 @@ function make_table(blockrange){
 
     currentblock=data;
     document.getElementById('test').innerHTML="Last Block "+currentblock.toString();
+    var blockrange=1000;
 
-    for(i=currentblock;i>currentblock-blockrange;i=i-1)
-      {
-        txs=getoatxs(i,
-        function(txdata){
+        txs=getoatxs(currentblock-blockrange,
+          function(txdata){
 
-              txlength=txdata['data'].length;
+              txlength=txdata.length;
 
               for (i=0; i<txlength; i++)
                 {
@@ -107,22 +106,12 @@ function make_table(blockrange){
                   console.log(block);
                   add_tx(block, txhash, destination, coloraddress, coloramt, spentstatus, spent_at, btc,i+1, true);
                 }
-
         });
-      }
-
 
   }
   );
-
-
 }
-
-
 make_table(100);
-
-
-
 </script>
 
 
