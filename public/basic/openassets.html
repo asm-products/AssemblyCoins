@@ -90,7 +90,8 @@ function make_table(blockrange){
           function(txdata){
 
               txlength=txdata.length;
-
+              console.log(txlength);
+              console.log(txdata);
               for (i=0; i<txlength; i++)
                 {
                   var block = txdata[i][8];
