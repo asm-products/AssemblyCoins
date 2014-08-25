@@ -42,41 +42,41 @@
 
 
 
-function add_tx(block, txhash, sourceaddress, destination, colornam, coloramt, spent, row_n, showlink){
+function add_tx(block, txhash, destination, coloraddress, coloramt, spent, spent_at, btc,row_n, showlink){
+
   var txtable= document.getElementById('txstable');
   var row=txtable.insertRow(row_n);
   var blockdata=row.insertCell(0);
   var txhashdata=row.insertCell(1);
-  var source_address=row.insertCell(2);
-  var destination_address=row.insertCell(3);
-  var colorname=row.insertCell(4);
-  var coloramount=row.insertCell(5);
+  var destination_address=row.insertCell(2);
+  var coloraddress=row.insertCell(3);
+  var coloramount=row.insertCell(4);
+  var spentstatus=row.insertCell(5);
+  var BTCcontent=row.insertCell(6);
 
   if(showlink){
   blockdata.innerHTML="<a href=http://blockchain.info/block-index/"+block+"?format=json>"+block+"</a>";
   txhashdata.innerHTML="<a href=https://blockchain.info/tx/"+txhash+">"+txhash+"</a>";
-  source_address.innerHTML="<a href=https://blockchain.info/address/"+sourceaddress+">"+sourceaddress+"</a>";
   destination_address.innerHTML="<a href=https://blockchain.info/address/"+destination+">"+destination+"</a>";
-  colorname.innerHTML=colornam;
+  coloraddress.innerHTML=coloraddress;
   coloramount.innerHTML=coloramt;
-  //spentstatus.innerHTML=spent;
+  spentstatus.innerHTML=spent_at;
+  BTCcontent.innerHTML=btc;
+
 }
 else{
-
 blockdata.innerHTML=block;
 txhashdata.innerHTML=txhash;
-source_address.innerHTML=sourceaddress;
 destination_address.innerHTML=destination;
-colorname.innerHTML=colornam;
+coloraddress.innerHTML=coloraddress;
 coloramount.innerHTML=coloramt;
-//spentstatus.innerHTML=spent;
+spentstatus.innerHTML=spent_at;
+BTCcontent.innerHTML=btc;
 }
-
-
   }
 
 function make_table(blockrange){
-  add_tx("Block","Transaction Hash", "Sources", "Destination", "Color Address", "Color Amount",  0, false);
+  add_tx("Block","Transaction Hash", Destination", "Color Address", "Color Amount",  "Spent in TX", "Bitcoin Content", 0, false);
 
   $.get("http://bitwrangle.herokuapp.com/blocks/count",
 
@@ -94,16 +94,18 @@ function make_table(blockrange){
 
               for (i=0; i<txlength; i++)
                 {
-                  var block = txdata['data'][i]['block'];
-                  var txhash=txdata['data'][i]['hashid'];
-                  var source_address=txdata['data'][i]['source_address'];
-                  var destination=txdata['data'][i]['destination_address'];
-                  var coloraddress=txdata['data'][i]['color_address'];
-                  var coloramt=txdata['data'][i]['color_amount'];
-                  var spentstatus=txdata['data'][i]['spent'];
+                  var block = txdata[i][8];
+                  var txhash=txdata[i][6];
+                  //var source_address=txdata[i];
+                  var destination=txdata[i][5];
+                  var coloraddress=txdata[i][2];
+                  var coloramt=txdata[i][1];
+                  var spentstatus=txdata[i][3];
+                  var spentat=txdata[i][4];
+                  var BTC=txdata[i][0];
 
                   console.log(block);
-                  add_tx(block, txhash, source_address, destination, coloraddress, coloramt, spentstatus,i+1, true);
+                  add_tx(block, txhash, destination, coloraddress, coloramt, spentstatus, spent_at, btc,i+1, true);
                 }
 
         });
