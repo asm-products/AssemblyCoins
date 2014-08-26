@@ -11,7 +11,7 @@
 <body>
 <br><br><br>
 <div class="row">
-  <div class="col-md-4 col-md-offset-4">
+  <div class="col-md-6 col-md-offset-4">
     <h2>Available API Calls<br><small>With CURL examples</small></h2>
     <div class="well">
       <h4>API ADDRESS: http://bitwrangle.herokuapp.com/</h4><br><br>
@@ -26,16 +26,31 @@
       <br><br>Response<br>tx_hash: '207726f41d1ddc38bd1cf53cc54114bca7aa03852a08f554d17c90251867c1b4'
       <br>OR<br>'None' if failed<br><br>
 
-      <h4>Transfer Colored Coins -  NO Database, Manually Selected Inputs</h4><br>
+      <h4>Check Color Balance of Public Address</h4>
+      curl http://bitwrangle.herokuapp.com/addresses/<public_address>/<color_address><br><br>
+        Response<br>
+        100000                (amount of specified colored coin at address)<br><br>
+
+      <h4>Find All Holders of Coin Color</h4>
+      curl "http://bitwrangle.herokuapp.com/colors/<color_address>"<br><br>
+        Response<br>
+        [{'color_amount': 337, 'address': '1C3nG7RpEGq5VzVWdygM4RY35qJji8fx2c'}, {'color_amount': 12500, 'address': '16NZhXGySMbCgpZ3WEMqkXGaxmmNnX51W5'}, {'color_amount': 500, 'address': '1Myvq1HeQUY9kawMy2EzGMm9KU1nnF8hkB'}]<br><br>
+
+      <h4>Transfer Colored Coins</h4><br>
       POST '/transactions/colored'
-      curl --data "public_address=1Ee8gNxqfDsWdQCSskfYVqX4BrYJN3k2SC&recipient=1GgwA7c2ovgWDBoVYsHT5VYXw2QBey1EdF&fee=0.00005&private_key=&coloramt=733&inputs=[{'output': '207726f41d1ddc38bd1cf53cc54114bca7aa03852a08f554d17c90251867c1b4:0', 'value': 5461}, {'output': '467f13f73aeb78cd78359e23f3e9c0dbdd46de162ff7dd0f8f629a34705fa751:0', 'value': 5461}, {'output': '4c88e1f38d01828404742e3a725575f1426f3a4411a9c81abd720c4ae533ea75:0', 'value': 5461}, {'output': '0d5efe32d57db5b4a2f1593a005a8c77be6f2002f0853b727cb73fe3d0458d43:3', 'value': 13500}]&inputcoloramt=1000" http://bitwrangle.herokuapp.com/transactions/colored
+      curl --data
 
       <br><br>Response<br>1aa3c755fb0fc34e24c6e1595eacedb983112ef383220cefae625fc74ac6158f
       <br><br>
       <h4>Write OP RETURN transaction</h4><br><br>
       <h4>Push Raw Hex Transaction</h4>curl --data "transaction_hex=0100000001c5a1e23719b48058e8be03eb87bfde0f19d2f471bf95cb5a0dff26e47f8ad64b040000008a4730440220262910bccc3dbf6d0580ad2655dd1ba2b0a4b02c4e0e75f870b0e5add94cc189022030f0eeb0e7f1de89978959f23a3bf8b7037e3a067a6bc1ae58776a34d2cf9b60014104c262fe05d3aaf5c05fc576b88be8856865bae64fc80d2f63653d4f9a4f2f8fa4952b0051928898fde272312e81819f7fcdb664292854c910e9465b4d9a52a235ffffffff025fea0000000000001976a914b3143ace345d79195842222b40c35028eda508df88acb8d00400000000001976a914423b040f0b9741a6fef3f9a163ee786495b3291788ac00000000" http://bitwrangle.herokuapp.com/transactions<br><br>
       Response<br>tx_hash: '4998592b6dc04993eda3977bb04b049f3a67ffacfc35a239bbc281ccb7434259' OR <br>'None' if failed<br><br>
-      <h4>Get Block Count</h4>curl http://bitwrangle.herokuapp.com/blocks/count<br><br>
+
+      <h4>Get Block Count</h4>curl 'http://bitwrangle.herokuapp.com/blocks/count'<br><br>
+
+      <h4>Inspect Block for Colored Coin Behavior</h4>curl 'http://bitwrangle.herokuapp.com/oa/blocks/<block_height>'<br><br>
+
+
       <h4>Generate Random Public/Private Key Pair</h4>curl http://bitwrangle.herokuapp.com/addresses/generate<br><br>
       Response<br>
       {'private_key': '5J6qXE7yKCKgfPfrb7LfAjB3e7jZx7zwdYeFPV7hT6Ncrkwo6yY', 'public_address': '1PxbnszdafZ6CYrHHqJYXw8pCsEW5dVPDU'}<br><br>
