@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+<br><br><br>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Known Colors</h2>
+
+
+      <table class="table" id="colortable">
+
+      </table><br><br><br><br>
+
+
+</div>
+</div>
+<br><br><br>
+
+
+</body>
+
+<script src="bitcoinjs.min.js">
+</script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
+
+<script>
+
+function addrow(color_address, source_address, total_issued, islink){
+  var colortable= document.getElementById('colortable');
+  if (islink)
+    {
+      colortable.innerHTML=colortable.innerHTML+"<tr><td><a href=http://www.assemblycoins.com/balances.html?coloraddress="+color_address+">"+color_address+"</a></td><td>"+source_address+"</td><td>"+total_issued+"</td></tr>";
+    }
+  else{
+    colortable.innerHTML=colortable.innerHTML+"<tr><td>"+color_address+"</td><td>"+source_address+"</td><td>"+total_issued+"</td></tr>";
+
+  }
+
+
+}
+
+
+function showcolors(){
+url="http://bitwrangle.herokuapp.com/colors/";
+console.log(url);
+
+$.get(url,
+  function(data,status){
+      //alert("Data: " + data + "\nStatus: " + status);
+      //console.log(data);
+      var response=JSON.parse(data);
+      console.log(response);
+      var leng=response.length;
+      console.log(leng);
+      // if(leng>100)
+      //   {
+      //     leng=100;
+      //   }
+
+      for (i=0;i<leng;i++)
+        {
+          //console.log(data[i]);
+          color_address=response[i][0];
+          source_address=response[i][1];
+          total_issued=response[i][2];
+          addrow(color_address, source_address, total_issued, true);
+        }
+
+
+    });
+};
+
+addrow("Color Address", "Source Address", "Total Issued", false);
+showcolors();
+
+</script>
+
+
+
+</html>

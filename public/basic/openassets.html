@@ -92,6 +92,10 @@ function make_table(blockrange){
               txlength=txdata.length;
               console.log(txlength);
               console.log(txdata);
+              if (txlength>1000)
+                {
+                  txlength=1000;
+                }
               for (i=0; i<txlength; i++)
                 {
                   var block = txdata[i][8];
