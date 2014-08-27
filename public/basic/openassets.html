@@ -57,8 +57,8 @@ function add_tx(block, txhash, destination, color_address, coloramt, spent_at, b
   if(showlink){
   blockdata.innerHTML="<a href=http://blockchain.info/block-index/"+block+"?format=json>"+block+"</a>";
   txhashdata.innerHTML="<a href=https://blockchain.info/tx/"+txhash+">"+txhash+"</a>";
-  destination_address.innerHTML="<a href=https://blockchain.info/address/"+destination+">"+destination+"</a>";
-  coloraddress.innerHTML=color_address;
+  destination_address.innerHTML="<a href=http://www.assemblycoins.com/balances.html?public="+destination+">"+destination+"</a>";
+  coloraddress.innerHTML="<a href=http://www.assemblycoins.com/balances.html?coloraddress="+color_address+">"+color_address+"</a>";
   coloramount.innerHTML=coloramt;
   spentstatus.innerHTML=spent_at;
   BTCcontent.innerHTML=btc;

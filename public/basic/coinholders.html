@@ -103,44 +103,6 @@ function coinholders(theForm){
 
 }
 
-if (getParameterByName("coloraddress").length>0)
-  {
-    coloraddress=getParameterByName("coloraddress");
-    url="http://bitwrangle.herokuapp.com/colors/"+coloraddress;
-    console.log(url);
-
-    $.get(url,
-      function(data,status){
-          //alert("Data: " + data + "\nStatus: " + status);
-          console.log(data);
-          response=data;
-          showstatements(response);
-        });
-
-  }
-  else if(getParameterByName("public").length>0)
-    {
-      publicaddress=getParameterByName("public");
-
-      url="http://bitwrangle.herokuapp.com"+"/addresses/"+publicaddress
-      console.log(url);
-      var response;
-
-      $.get(url,
-        function(data,status){
-            //alert("Data: " + data + "\nStatus: " + status);
-            console.log(data);
-            response=data;
-            showstatements(response);
-          });
-    }
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
 
 </script>
 
