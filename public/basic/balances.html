@@ -140,7 +140,7 @@ if (getParameterByName("coloraddress").length>0)
     coloraddress=getParameterByName("coloraddress");
   url="http://bitwrangle.herokuapp.com/colors/"+coloraddress;
   console.log(url);
-  colorrow("Public Address", "Coin Amount");
+  colorrow("Public Address", "Coin Amount", False);
   $.get(url,
     function(data,status){
         //alert("Data: " + data + "\nStatus: " + status);
@@ -166,7 +166,7 @@ if (getParameterByName("coloraddress").length>0)
           url="http://bitwrangle.herokuapp.com"+"/addresses/"+publicaddress
           console.log(url);
           var response;
-          addressrow("Color Address", "Coin Amount");
+          addressrow("Color Address", "Coin Amount", False);
           $.get(url,
             function(data,status){
                 //alert("Data: " + data + "\nStatus: " + status);
