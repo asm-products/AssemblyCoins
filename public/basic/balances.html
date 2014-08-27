@@ -33,9 +33,18 @@
 </div>
 <br><br><br><br>
 
-<div id="addressplace">
-</div><br><br><br><br>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Known Colors</h2>
 
+
+      <table class="table" id="colortable">
+
+      </table><br><br><br><br>
+
+
+</div>
+</div>
 
 </body>
 
@@ -44,27 +53,30 @@
 
 
 <script>
-function showstatements(statements){
+//SHOW PUBLIC ADDRESSES HOLDING THIS COLOR
+function colorrow(public_address, color_amount, islink){
+  var colortable= document.getElementById('colortable');
+  if (islink)
+    {
+      colortable.innerHTML=colortable.innerHTML+"<tr><td><a href=http://www.assemblycoins.com/balances.html?public="+public_address+">"+public_address+"</a></td><td>"+color_amount+"</td></tr>";
+    }
+  else{
+    colortable.innerHTML=colortable.innerHTML+"<tr><td>"+public_address+"</td><td>"+color_amount+"</td></tr>";
 
-var addresscontainer=document.createElement('div');
-var addresscolumn=document.createElement('div');
-addresscolumn.className="col-md-8 col-md-offset-2";
-
-var addresswell=document.createElement('div');
-addresswell.className="well";
-var header=document.createElement('h4');
-header.innerHTML=statements;
-
-addresswell.appendChild(header);
-
-addresscolumn.appendChild(addresswell);
-addresscontainer.appendChild(addresscolumn);
-
-var addressplace=document.getElementById("addressplace");
-addressplace.innerHTML = "";
-addressplace.appendChild(addresscontainer);
+  }
 }
+//SHOW ALL COLORS HELD BY THIS PUBLIC ADDRESS
+function addressrow(color_address, color_amount, islink){
+  var colortable= document.getElementById('colortable');
+  if (islink)
+    {
+      colortable.innerHTML=colortable.innerHTML+"<tr><td><a href=http://www.assemblycoins.com/balances.html?coloraddress="+color_address+">"+color_address+"</a></td><td>"+color_amount+"</td></tr>";
+    }
+  else{
+    colortable.innerHTML=colortable.innerHTML+"<tr><td>"+color_address+"</td><td>"+color_amount+"</td></tr>";
 
+  }
+}
 
 
 function addressbalance(theForm){
@@ -79,8 +91,19 @@ $.get(url,
   function(data,status){
       //alert("Data: " + data + "\nStatus: " + status);
       console.log(data);
-      response=data;
-      showstatements(response);
+      var response=JSON.parse(data);
+
+      var leng=response.length;
+
+      for (i=0;i<leng;i++)
+        {
+          //console.log(data[i]);
+          public_address=response[i]['address'];
+          color_amount=response[i]['color_amount'];
+
+          addressrow(color_address, color_amount, true);
+        }
+
     });
 
   return false;
@@ -95,8 +118,22 @@ function coinholders(theForm){
     function(data,status){
         //alert("Data: " + data + "\nStatus: " + status);
         console.log(data);
-        response=data;
-        showstatements(response);
+        var response=JSON.parse(data);
+
+        var leng=response.length;
+
+        for (i=0;i<leng;i++)
+          {
+            //console.log(data[i]);
+            public_address=response[i]['address'];
+            color_amount=response[i]['color_amount'];
+
+            colorrow(color_address, color_amount, true);
+          }
+
+
+
+
       });
 
     return false;
