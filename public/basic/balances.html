@@ -35,7 +35,7 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h2>Known Colors</h2>
+
 
 
       <table class="table" id="colortable">
@@ -130,46 +130,60 @@ function coinholders(theForm){
 
             colorrow(color_address, color_amount, true);
           }
-
-
-
-
       });
 
     return false;
-
 }
 
 if (getParameterByName("coloraddress").length>0)
   {
     coloraddress=getParameterByName("coloraddress");
-    url="http://bitwrangle.herokuapp.com/colors/"+coloraddress;
-    console.log(url);
+  url="http://bitwrangle.herokuapp.com/colors/"+coloraddress;
+  console.log(url);
 
-    $.get(url,
-      function(data,status){
-          //alert("Data: " + data + "\nStatus: " + status);
-          console.log(data);
-          response=data;
-          showstatements(response);
-        });
+  $.get(url,
+    function(data,status){
+        //alert("Data: " + data + "\nStatus: " + status);
+        console.log(data);
+        var response=JSON.parse(data);
 
+        var leng=response.length;
+
+        for (i=0;i<leng;i++)
+          {
+            //console.log(data[i]);
+            public_address=response[i]['address'];
+            color_amount=response[i]['color_amount'];
+
+            colorrow(color_address, color_amount, true);
+          }
+      });
   }
   else if(getParameterByName("public").length>0)
     {
       publicaddress=getParameterByName("public");
 
-      url="http://bitwrangle.herokuapp.com"+"/addresses/"+publicaddress
-      console.log(url);
-      var response;
+          url="http://bitwrangle.herokuapp.com"+"/addresses/"+publicaddress
+          console.log(url);
+          var response;
 
-      $.get(url,
-        function(data,status){
-            //alert("Data: " + data + "\nStatus: " + status);
-            console.log(data);
-            response=data;
-            showstatements(response);
-          });
+          $.get(url,
+            function(data,status){
+                //alert("Data: " + data + "\nStatus: " + status);
+                console.log(data);
+                var response=JSON.parse(data);
+
+                var leng=response.length;
+
+                for (i=0;i<leng;i++)
+                  {
+                    //console.log(data[i]);
+                    public_address=response[i]['address'];
+                    color_amount=response[i]['color_amount'];
+
+                    addressrow(color_address, color_amount, true);
+                  }
+              });
     }
 
 function getParameterByName(name) {
