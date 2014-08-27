@@ -32,13 +32,13 @@
         100000                (amount of specified colored coin at address)<br><br>
 
       <h4>Find All Holders of Coin Color</h4>
-      curl "http://bitwrangle.herokuapp.com/colors/<color_address>"<br><br>
+      curl http://bitwrangle.herokuapp.com/colors/"color_address"<br><br>
         Response<br>
         [{'color_amount': 337, 'address': '1C3nG7RpEGq5VzVWdygM4RY35qJji8fx2c'}, {'color_amount': 12500, 'address': '16NZhXGySMbCgpZ3WEMqkXGaxmmNnX51W5'}, {'color_amount': 500, 'address': '1Myvq1HeQUY9kawMy2EzGMm9KU1nnF8hkB'}]<br><br>
 
       <h4>Transfer Colored Coins</h4><br>
       POST '/transactions/colored'
-      curl --data
+      curl --data "from_address=&private_key=&coin_amount=&color_address=&destination_address=" http://bitwrangle.herokuapp.com/colors/transfer
 
       <br><br>Response<br>1aa3c755fb0fc34e24c6e1595eacedb983112ef383220cefae625fc74ac6158f
       <br><br>
@@ -48,7 +48,7 @@
 
       <h4>Get Block Count</h4>curl 'http://bitwrangle.herokuapp.com/blocks/count'<br><br>
 
-      <h4>Inspect Block for Colored Coin Behavior</h4>curl 'http://bitwrangle.herokuapp.com/oa/blocks/<block_height>'<br><br>
+      <h4>Inspect Block for Colored Coin Behavior</h4>curl 'http://bitwrangle.herokuapp.com/oa/blocks/"block_height"'<br><br>
 
 
       <h4>Generate Random Public/Private Key Pair</h4>curl http://bitwrangle.herokuapp.com/addresses/generate<br><br>
