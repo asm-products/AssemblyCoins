@@ -178,8 +178,8 @@ if (getParameterByName("coloraddress").length>0)
                 for (i=0;i<leng;i++)
                   {
                     console.log(data[i]);
-                    public_address=response[i].name;
-                    color_amount=response[i][public_address];
+                    color_address=response[i]['color_address'];
+                    color_amount=response[i]['color_amt'];
                     console.log(response[i]);
                     console.log(color_amount);
                     addressrow(color_address, color_amount, true);
