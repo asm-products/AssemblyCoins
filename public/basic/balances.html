@@ -174,10 +174,10 @@ if (getParameterByName("coloraddress").length>0)
                 var response=JSON.parse(data);
 
                 var leng=response.length;
-                console.log(response)
+                console.log(leng);
                 for (i=0;i<leng;i++)
                   {
-                    //console.log(data[i]);
+                    console.log(data[i]);
                     public_address=response[i].name;
                     color_amount=response[i][public_address];
                     console.log(response[i]);
