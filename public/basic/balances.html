@@ -197,14 +197,10 @@ if (getParameterByName("coloraddress").length>0)
 
                 var leng=response.length;
                 console.log(response);
-                for (i=0;i<leng;i++)
+                for (var color_address in response)
                   {
-                    console.log(data[i]);
-                    color_address=response[i]['color_address'];
-                    color_amount=response[i]['color_amt'];
-                    console.log(response[i]);
-                    console.log(color_amount);
-                    addressrow(color_address, color_amount, true);
+                    amt=response[color_address]
+                    addressrow(color_address,amt,True)
                   }
               });
     }
