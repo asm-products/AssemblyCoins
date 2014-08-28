@@ -173,14 +173,12 @@ if (getParameterByName("coloraddress").length>0)
 
         var leng=response.length;
 
-        for (i=0;i<leng;i++)
+        for (var color_address in response)
           {
-            //console.log(data[i]);
-            public_address=response[i]['address'];
-            color_amount=response[i]['color_amount'];
-
-            colorrow(public_address, color_amount, true);
+            amt=response[color_address];
+            colorrow(color_address, amt,true);
           }
+
       });
   }
   else if(getParameterByName("public").length>0)
@@ -198,7 +196,7 @@ if (getParameterByName("coloraddress").length>0)
                 var response=JSON.parse(data);
 
                 var leng=response.length;
-                console.log(leng);
+                console.log(response);
                 for (i=0;i<leng;i++)
                   {
                     console.log(data[i]);
